@@ -10,71 +10,41 @@ from nltk.corpus import stopwords
 
 # In[28]:
 
+class classifier_mine:
 
-message = "Help me!! There are people after me."
-tokenized_words = nltk.word_tokenize(sentence)
-#print(tokenized_words)
-stop = set(stopwords.words('english'))
+	def __init__(self,message):
 
-sentence_word = [i for i in message.lower().split() if i not in stop]
-print(sentence_word)
+		self.count = 0
 
+		#message = "Help me!! There are people after me."
+		tokenized_words = nltk.word_tokenize(message)
+		#print(tokenized_words)
+		stop = set(stopwords.words('english'))
 
-# In[9]:
-
-
-word_class = ['help','urgent','molested','raped','following','harrasing','snatch','abusing','fight','scared','stalking','fondle',
-                 'pervert','kidnapped','alarm',
-'appall',
-'awe',
-'bully',
-'coerce',
-'constrain',
-'daunt',
-'dishearten',
-'dismay',
-'scare',
-'subdue'
-'terrify',
-'terrorize',
-'badger',
-'bait',
-'bludgeon',
-'bluster',
-'browbeat',
-'buffalo',
-'bulldoze',
-'chill',
-'compel',
-'cow',
-'dispirit',
-'disquiet',
-'dragoon',
-'enforce',
-'force',
-'hound',
-'oblige',
-'overawe',
-'ride',
-'ruffle',
-'spook',
-'strong-arm',
-'bowl over',
-'lean on',
-'push around',
-'showboat',
-"twist someone's arm",'trouble', 'sorry', 'anxiety', 'perturbation', 'uneasiness', 'disquiet', 'angst']
+		self.sentence_word = [i for i in message.lower().split() if i not in stop]
+		#print(self.sentence_word)
 
 
-# In[30]:
+		# In[9]:
 
+		file_reader = open('word_dict.txt','r')
+		self.content = file_reader.read()
 
-count = 0
-for ix in sentence_word:
-    if ix in word_class:
-        print(ix)
-        count += 1
-    
-    
-    
+	# In[30]:
+	def counter(self):
+
+		self.count = 0
+		for ix in self.sentence_word:
+			if ix in self.content:
+				#print(ix)
+				self.count += 1
+		return self.count
+
+	def get_count(self):
+
+		return self.count
+
+obj = classifier_mine("Help me!! There are people after me.")
+print(obj.counter())
+
 
